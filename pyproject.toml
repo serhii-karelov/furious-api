@@ -12,3 +12,38 @@ authors = [
 Homepage = "https://github.com/serhii-karelov/furious-api"
 Repository = "https://github.com/serhii-karelov/furious-api"
 
+[tool.poetry]
+name = "furious"
+version = "0.0.1"
+description = "Furious API"
+authors = ["Serhii Karelov"]
+readme = "README.md"
+packages = [{include = "furious", from = "src"}]
+
+[tool.poetry.scripts]
+furious = "furious.cli.bin.furious:tpr"
+
+[tool.poetry.dependencies]
+python = ">=3.10"
+fastapi = ">=0.115.0"
+uvicorn = "^0.32.0"
+asgi-lifespan = "^2.1.0"
+typer = "^0.12.5"
+ptpython = { version = "^3.0.29", optional = true }
+bpython = { version = "^0.24", optional = true }
+ipython = { version = "^8.29.0", optional = true }
+
+[tool.poetry.extras]
+standard =  ["ptpython"]
+ptpython = ["ptpython"]
+bpython = ["bpython"]
+ipython = ["ipython"]
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+ruff = "^0.7.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
