@@ -3,7 +3,7 @@ from typing import Annotated
 import typer
 
 from furious.cli.commands.run import run_app
-from furious.cli.commands.shell import REPLs, embed as embed_shell
+from furious.cli.commands.shell import embed as embed_shell
 from furious.cli.config import Config
 from furious.cli.setup import set_up_furious
 

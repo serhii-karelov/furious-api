@@ -1,5 +1,4 @@
 from importlib import import_module
-from pathlib import Path
 from fastapi import FastAPI
 from furious.cli.exceptions import FuriousException
 from furious.cli.config import get_config_key
@@ -43,13 +42,25 @@ def guess_and_import_module():
     )
 
 
+def get_app_import_string() -> str:
+    assert is_set_up()
+    app_path = get_config_key("app")
+    if app_path:
+        return app_path
+
+    module = guess_and_import_module()
+    app_name, _ = find_app(module)
+    return f"{module.__name__}:{app_name}"
+
+
 def import_app():
     assert is_set_up()
     app_path = get_config_key("app")
 
     if app_path is None:
         module = guess_and_import_module()
-        return find_app(module)
+        _, app = find_app(module)
+        return app
     else:
         module_name, app_name = app_path.rsplit(":", 1)
         module = import_module(module_name)
@@ -57,9 +68,9 @@ def import_app():
 
 
 def find_app(module):
-    for obj in module.__dict__.values():
+    for name, obj in module.__dict__.items():
         if isinstance(obj, FastAPI):
-            return obj
+            return name, obj
     raise FuriousException(
         "ASGI application cannot be discovered.\n"
         "You have to specify application path explicitly in pyproject.toml"
