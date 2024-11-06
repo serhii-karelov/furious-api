@@ -1,53 +1,39 @@
 [project]
-version = "0.0.0"
+version = "0.0.1"
 name = "furious-api"
-description = "if Xzibit customized FastAPI"
+description = "From FastAPI to Fast-and-furiousAPI"
 readme = "README.md"
 license = {text = "MIT License"}
 authors = [
   {name = "Serhii Karelov", email = "axe@sharpaxe.org"}
 ]
 requires-python = ">=3.11"
+dependencies = [
+    "asgi-lifespan>=2.1.0",
+    "fastapi>=0.115.4",
+    "ptpython>=3.0.29",
+    "typer>=0.12.5",
+    "uvicorn>=0.32.0",
+]
 
 [project.urls]
 Homepage = "https://github.com/serhii-karelov/furious-api"
 Repository = "https://github.com/serhii-karelov/furious-api"
 
-[tool.poetry]
-name = "furious"
-version = "0.0.1"
-description = "Furious API"
-authors = ["Serhii Karelov"]
-readme = "README.md"
-packages = [{include = "furious", from = "src"}]
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
 
-[tool.poetry.scripts]
+[project.scripts]
 furious = "furious.cli.bin.furious:tpr"
 
-[tool.poetry.dependencies]
-python = ">=3.11"
-fastapi = ">=0.115.0"
-uvicorn = "^0.32.0"
-asgi-lifespan = "^2.1.0"
-typer = "^0.12.5"
-ptpython = { version = "^3.0.29", optional = true }
-bpython = { version = "^0.24", optional = true }
-ipython = { version = "^8.29.0", optional = true }
-
-[tool.poetry.extras]
-standard =  ["ptpython"]
-ptpython = ["ptpython"]
-bpython = ["bpython"]
-ipython = ["ipython"]
-
-[tool.poetry.group.dev.dependencies]
-pytest = "^8.3.3"
-ruff = "^0.7.2"
-pre-commit = "*"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[project.optional-dependencies]
+bpython = [
+    "bpython>=0.24",
+]
+ipython = [
+    "ipython>=8.29.0",
+]
 
 [tool.ruff]
 line-length = 79
@@ -55,8 +41,20 @@ line-length = 79
 [tool.ruff.lint]
 select = [
   "I",
-
 ]
 # Add the `line-too-long` rule to the enforced rule set.
 extend-select = ["E501"]
+
+[dependency-groups]
+test = [
+    "pytest>=8.3.3",
+]
+lint = [
+    "ruff>=0.7.2",
+]
+dev = [
+    "pre-commit>=4.0.1",
+    "pytest>=8.3.3",
+    "ruff>=0.7.2",
+]
 
