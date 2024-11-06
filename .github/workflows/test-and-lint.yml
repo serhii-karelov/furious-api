@@ -37,4 +37,4 @@ jobs:
         
     - name: Lint with ruff
       run: |
-        flake8 check
+        poetry run ruff check

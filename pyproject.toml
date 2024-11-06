@@ -25,6 +25,7 @@ packages = [{include = "furious", from = "src"}]
 furious = "furious.cli.bin.furious:tpr"
 
 [tool.poetry.dependencies]
+python = ">=3.11"
 fastapi = ">=0.115.0"
 uvicorn = "^0.32.0"
 asgi-lifespan = "^2.1.0"
