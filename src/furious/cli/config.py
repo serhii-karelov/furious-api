@@ -26,7 +26,9 @@ class Config(BaseModel):
     model_config = ConfigDict(frozen=True)
 
     app: str | None = None
-    workdir: Path = Field(default_factory=lambda: Path(""), validate_default=True)
+    workdir: Path = Field(
+        default_factory=lambda: Path(""), validate_default=True
+    )
     shell: REPLs = REPLs.PT
     host: str = "0.0.0.0"
     port: int = 8001
@@ -63,4 +65,6 @@ def _read_config():
     try:
         return data["tool"]["furious"]
     except KeyError:
-        raise FuriousException("section [tool.furios] is missing in pyproject.toml")
+        raise FuriousException(
+            "section [tool.furios] is missing in pyproject.toml"
+        )

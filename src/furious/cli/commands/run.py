@@ -10,4 +10,10 @@ def run_app(host, port):
     """
     app_import_str = get_app_import_string()
     config = get_config()
-    uvicorn.run(app_import_str, host=host, port=port, reload=True, root_path=config.workdir)
+    uvicorn.run(
+        app_import_str,
+        host=host,
+        port=port,
+        reload=True,
+        root_path=config.workdir,
+    )
