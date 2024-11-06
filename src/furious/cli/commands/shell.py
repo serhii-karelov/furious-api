@@ -28,7 +28,8 @@ def embed_ptpython(app):
 
     async def start():
         async with LifespanManager(app):
-            return embed()
+            embed_result = await embed(return_asyncio_coroutine=True)
+            return embed_result
 
     sys.exit(asyncio.run(start()))
 
