@@ -35,6 +35,11 @@ jobs:
         # TODO: install extras
         poetry install
         
-    - name: Lint with ruff
+    - name: Lint
       run: |
         poetry run ruff check
+
+    - name: Test
+      run: |
+        poetry run pytest
+
