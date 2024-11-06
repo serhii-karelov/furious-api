@@ -29,7 +29,8 @@ def guess_and_import_module():
 
     raise FuriousException(
         "Module with the FastAPI application cannot be found. "
-        'Please specify it explicitly in pyproject.toml -> [tools.furious] -> app = "main.app:app"'
+        "Please specify it explicitly in pyproject.toml under [tools.furious]"
+        " e.g. app = 'main.app:app'"
     )
 
 

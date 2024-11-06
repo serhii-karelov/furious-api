@@ -42,6 +42,7 @@ ipython = ["ipython"]
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.3"
 ruff = "^0.7.2"
+pre-commit = "*"
 
 [build-system]
 requires = ["poetry-core"]
@@ -49,4 +50,8 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
 line-length = 79
+
+[tool.ruff.lint]
+# Add the `line-too-long` rule to the enforced rule set.
+extend-select = ["E501"]
 
