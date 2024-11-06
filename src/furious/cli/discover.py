@@ -4,15 +4,6 @@ from furious.cli.exceptions import FuriousException
 from furious.cli.config import get_config_key
 from furious.cli.setup import is_set_up
 
-"""
-High-level of what we want: 
-    read config
-    if has workdir => set it
-    if has app => import it
-    otherwise => guess the module
-        and get the app from the guessed module
-"""
-
 
 def guess_and_import_module():
     workdir = get_config_key("workdir")
