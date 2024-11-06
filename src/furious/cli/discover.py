@@ -1,7 +1,9 @@
 from importlib import import_module
+
 from fastapi import FastAPI
-from furious.cli.exceptions import FuriousException
+
 from furious.cli.config import get_config_key
+from furious.cli.exceptions import FuriousException
 from furious.cli.setup import is_set_up
 
 

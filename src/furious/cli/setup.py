@@ -2,7 +2,6 @@ import site
 
 from furious.cli.config import get_config_key
 
-
 _is_set_up = False
 
 

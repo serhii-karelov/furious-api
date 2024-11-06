@@ -7,7 +7,6 @@ from furious.cli.commands.shell import embed as embed_shell
 from furious.cli.config import Config
 from furious.cli.setup import set_up_furious
 
-
 tpr = typer.Typer(callback=set_up_furious)
 
 
