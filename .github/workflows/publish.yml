@@ -1,12 +1,16 @@
-name: Python package
+name: Publish
 
 on:
   release:
     types:
       - created
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      # IMPORTANT: this permission is mandatory for trusted publishing
+      id-token: write
     steps:
     - uses: actions/checkout@v4
 
@@ -29,3 +33,5 @@ jobs:
 
     - name: Publish
       run: uv publish
+
+
